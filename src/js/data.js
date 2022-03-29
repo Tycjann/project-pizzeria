@@ -1,6 +1,30 @@
 const dataSource = {}; // eslint-disable-line no-unused-vars
 
 dataSource.products = {
+
+
+  barbecue: {
+    class: 'small',
+    name: 'Vegan barbecue ribs',
+    price: 23,
+    description: 'Recently, it was national BBQ day … and as vegans we have a duty to show the world that barbecues aren’t just for meat-eaters.',
+    images: [
+      '<img class="active" src="images/doughnut.svg">',
+    ],
+    params: {
+      sauce: {
+        label: 'Sauce',
+        type: 'radios',
+        options: {
+          hot: {label: 'Hot', price: 1, default: true},
+          green: {label: 'Green', price: 1},
+          SweetAndSour: {label: 'Sweet and Sour', price: 1},
+        },
+      },
+    },
+  },
+
+
   cake: {
     class: 'small',
     name: 'Zio Stefano\'s Doughnut',
@@ -10,6 +34,8 @@ dataSource.products = {
       '<img class="active" src="images/doughnut.svg">',
     ],
   },
+
+
   breakfast: {
     class: 'small',
     name: 'Zia Giulia\'s Breakfast',
