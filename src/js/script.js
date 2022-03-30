@@ -89,6 +89,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
     
     initAccordion() {
@@ -141,8 +142,7 @@
     
       // * covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData:', formData);
-    
+        
       // * set price to default price
       let price = thisProduct.data.price;
     
@@ -159,7 +159,8 @@
           // console.log(optionId, option);
           
           // * formData[toppings] && formData[toppings].include('olives') 
-          if(formData[paramId] && formData[paramId].includes(optionId)) {
+          const optionSelected  = formData[paramId] && formData[paramId].includes(optionId);
+          if(optionSelected) {
             // * check if the option is not default
             /* !option.default */
             if(option.default != true) {
@@ -174,8 +175,42 @@
               price -= option.price;
             }
           }
+          const nameImage = `.${paramId}-${optionId}`;
+          // ? dlaczego to nie zadziałało
+          // ? const nameImage = paramId+'-'+optionId;
+          console.log('image:', nameImage);
+
+          const optionImage = thisProduct.imageWrapper.querySelector(nameImage);
+
+          if (optionImage != null) {
+            
+            if (optionSelected) {
+              if (option.default == true) {
+                optionImage.classList.add('active');
+              }
+            } 
+            else {
+              if (option.default == true) {
+                optionImage.classList.remove('active');
+              }
+            }
+  
+
+
+
+          }
+
+          
+
         }
       }
+
+      
+
+      // console.log('thisProduct.imageWrapper:', thisProduct.imageWrapper);
+
+
+
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
