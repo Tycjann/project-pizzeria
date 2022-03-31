@@ -176,9 +176,8 @@
             }
           }
           const nameImage = `.${paramId}-${optionId}`;
-          // ? dlaczego to nie zadziałało
-          // ? const nameImage = paramId+'-'+optionId;
-          console.log('image:', nameImage);
+          // ? dlaczego to nie zadziałało: const nameImage = paramId+'-'+optionId;
+          // console.log('image:', nameImage);
 
           const optionImage = thisProduct.imageWrapper.querySelector(nameImage);
 
@@ -188,29 +187,15 @@
               if (option.default == true) {
                 optionImage.classList.add('active');
               }
-            } 
-            else {
-              if (option.default == true) {
-                optionImage.classList.remove('active');
+              else {
+                if (optionSelected) optionImage.classList.add('active');
+                else optionImage.classList.remove('active');
               }
-            }
-  
-
-
-
+            } 
+            else optionImage.classList.remove('active');
           }
-
-          
-
         }
       }
-
-      
-
-      // console.log('thisProduct.imageWrapper:', thisProduct.imageWrapper);
-
-
-
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
