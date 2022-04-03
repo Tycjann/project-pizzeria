@@ -7,6 +7,7 @@ utils.createDOMFromHTML = function(htmlString) {
 };
 
 utils.createPropIfUndefined = function(obj, key, value = []){
+  // eslint-disable-next-line no-prototype-builtins
   if(!obj.hasOwnProperty(key)){
     obj[key] = value;
   }

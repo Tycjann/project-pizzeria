@@ -18,7 +18,9 @@
       "except": ["first-nested"],
       "ignore": ["after-comment"]
     } ],
-    "unit-whitelist": null,
+    "unit-whitelist": [["%", "vh","vw"], {
+      "message": "Please use rem() for size units"
+    }],
     "length-zero-no-unit": true,
     "scss/selector-no-redundant-nesting-selector": true,
     "scss/no-duplicate-dollar-variables": true
