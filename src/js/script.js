@@ -70,7 +70,7 @@
       thisProduct.processOrder();
     }
 
-    renderInMenu() {
+    renderInMenu(){
       const thisProduct = this;
 
       // * generate HTML based on template
@@ -98,7 +98,7 @@
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
     
-    initAccordion() {
+    initAccordion(){
       const thisProduct = this;
 
       // * find the clickable trigger (the element that should react to clicking)
@@ -123,7 +123,7 @@
       });
     }
 
-    initOrderForm() {
+    initOrderForm(){
       const thisProduct = this;
 
       thisProduct.form.addEventListener('submit', function(event){
@@ -143,7 +143,7 @@
       });
     }
 
-    processOrder() {
+    processOrder(){
       const thisProduct = this;
     
       // * covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
@@ -181,11 +181,9 @@
               price -= option.price;
             }
           }
-          const nameImage = `.${paramId}-${optionId}`;
-          // ? dlaczego to nie zadziałało: const nameImage = paramId+'-'+optionId;
-          // console.log('image:', nameImage);
 
-          const optionImage = thisProduct.imageWrapper.querySelector(nameImage);
+          // const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
 
           if (optionImage != null) {
             
@@ -203,24 +201,33 @@
         }
       }
       // update calculated price in the HTML
+
+      price *= thisProduct.amountWidget.value;
+
       thisProduct.priceElem.innerHTML = price;
     }
 
-    initAmountWidget() {
+    initAmountWidget(){
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function(){
+        thisProduct.processOrder();
+      });
       
     }
   }
 
   class AmountWidget {
-    constructor(element) {
+    constructor(element){
       const thisWidget = this;
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
-      thisWidget.initAction ();
+      // thisWidget.setValue(thisWidget.input.value);
+      // ? Czy dobrze to zrobiłem?
+      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.initAction();
 
       // console.log('AmountWidget', thisWidget);
       // console.log('constructor arguments', element);
@@ -235,20 +242,24 @@
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
 
-    setValue(value) {
+    setValue(value){
       const thisWidget = this;
       const newValue = parseInt(value);
 
       // * TODO: Add validiation
       if (thisWidget.value !== newValue && !isNaN(newValue)) 
       {
-        if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) thisWidget.value = newValue;
+        if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) 
+        {
+          thisWidget.value = newValue;
+          thisWidget.announce(newValue);
+        }
       }
       
       thisWidget.input.value = thisWidget.value;
     }
 
-    initAction () {
+    initAction (){
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function(){
@@ -262,6 +273,13 @@
       thisWidget.linkIncrease.addEventListener('click', function(){
         thisWidget.setValue(parseInt(thisWidget.input.value) + 1);
       });
+    }
+
+    announce(){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
   
