@@ -60,11 +60,9 @@
       wrapperActive: 'active',
       imageVisible: 'active',
     },
-    // CODE ADDED START
     cart: {
       wrapperActive: 'active',
     },
-    // CODE ADDED END
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -73,22 +71,20 @@
       defaultValue: 1,
       defaultMin: 0,
       defaultMax: 10,
-      // ? tak było domyslnie, ale nie działało, bo dawało zakres 1 - 9, a nie 0 - 10
-      // defaultMin: 1,
-      // defaultMax: 9,
-    }, // CODE CHANGED
-    // CODE ADDED START
+    }, 
     cart: {
       defaultDeliveryFee: 20,
     },
-    // CODE ADDED END
+    db: {
+      url: '//localhost:3131',
+      products: 'products',
+      orders: 'orders',
+    },
   };
 
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
-    // CODE ADDED START
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-    // CODE ADDED END
   };
 
   class Product {
@@ -308,13 +304,8 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
-      // thisWidget.setValue(thisWidget.input.value);
-      // ? Czy dobrze to zrobiłem?
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
       thisWidget.initAction();
-
-      // console.log('AmountWidget', thisWidget);
-      // console.log('constructor arguments', element);
     }
 
     getElements(element){
@@ -377,7 +368,6 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      // console.log('new Cart', thisCart);
     }
 
     getElements(element){
@@ -394,8 +384,6 @@
       thisCart.dom.subtotalPrice  = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
-
-      // console.log('productList:', thisCart.dom.productList);
     }
 
     initActions(){
@@ -419,7 +407,7 @@
       let productElement = event.dom.wrapper;
       productElement.remove();
       thisCart.update();  
-    };
+    }
 
     update(){
       const thisCart = this;
@@ -477,8 +465,6 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       thisCartProduct.initAction();
-
-      // console.log('thisCartProduct:', thisCartProduct);
     }
 
     getElements(element){
@@ -513,7 +499,6 @@
         },
       });
       thisCartProduct.dom.wrapper.dispatchEvent(event);
-      // console.log('delete');
     }
 
     initAction(){
@@ -529,20 +514,31 @@
         thisCartProduct.remove();
       });
     }
-
   }
   
   const app = {
     initData: function(){
       const thisApp = this;
-      thisApp.data = dataSource;
+      thisApp.data = {};
+      const url = settings.db.url + '/' + settings.db.products;
+
+      fetch(url)
+        .then(function(rawResponse){
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+          // console.log('parsedResponse:', parsedResponse);
+          thisApp.data.products = parsedResponse;
+          thisApp.initMenu();
+        });
+      // console.log('thisApp.data',JSON.stringify(thisApp.data));
     },
 
     initMenu: function(){
       const thisApp = this;
 
       for (let productData in thisApp.data.products) {
-        new Product (productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
     },
 
@@ -557,7 +553,6 @@
       const thisApp = this;
 
       thisApp.initData();
-      thisApp.initMenu();
       thisApp.initCart();
     }
   };
