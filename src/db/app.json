@@ -1,4 +1,65 @@
 {
+  "events": [
+    {
+      "id": 1,
+      "date": "2021-01-01",
+      "hour": "12:30",
+      "table": 1,
+      "repeat": false,
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
+    },
+    {
+      "id": 2,
+      "date": "2021-01-01",
+      "hour": "16:00",
+      "table": 3,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": [
+        "bread",
+        "lemonWater"
+      ]
+    },
+    {
+      "id": 3,
+      "date": "2021-01-01",
+      "hour": "12:00",
+      "table": 3,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": [
+        "bread",
+        "lemonWater"
+      ]
+    },
+    {
+      "id": 4,
+      "date": "2021-01-01",
+      "hour": "13:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
+    },
+    {
+      "id": 5,
+      "date": "2021-01-01",
+      "hour": "18:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": [
+        "lemonWater"
+      ]
+    }
+  ],
+  "bookings": [],
   "orders": [
     {
       "address": "dddd",
@@ -271,6 +332,41 @@
         }
       ],
       "id": 10
+    },
+    {
+      "address": "",
+      "phone": "",
+      "totalPrice": 119,
+      "subtotalPrice": 99,
+      "totalNumber": 7,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "id": "cake",
+          "amount": 1,
+          "price": 9,
+          "priceSingle": 9,
+          "name": "Zio Stefano's Doughnut",
+          "params": {}
+        },
+        {
+          "id": "cake",
+          "amount": 3,
+          "price": 63,
+          "priceSingle": 9,
+          "name": "Zio Stefano's Doughnut",
+          "params": {}
+        },
+        {
+          "id": "cake",
+          "amount": 3,
+          "price": 27,
+          "priceSingle": 9,
+          "name": "Zio Stefano's Doughnut",
+          "params": {}
+        }
+      ],
+      "id": 11
     }
   ],
   "products": [
