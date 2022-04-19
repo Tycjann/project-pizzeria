@@ -1,5 +1,8 @@
 import { select, templates } from '../settings.js';
+import { utils } from '../utils.js';
 import AmountWidget from './AmountWidget.js';
+import DatePicker from './DatePicker.js'; 
+import HourPicker from './HourPicker.js'; 
 
 class Booking{
   constructor(element){
@@ -9,27 +12,25 @@ class Booking{
 
   render(element){
 
-    const generateHTML = templates.bookingWidget();
+    const generatedHTML = templates.bookingWidget();
+    this.element = utils.createDOMFromHTML(generatedHTML);
+    const bookingContainer = document.querySelector(select.containerOf.booking);
+    bookingContainer.appendChild(this.element);
 
     this.dom = {};
-
-    this.dom.wraper = element;
-    this.dom.wraper.innerHTML = generateHTML;
-
-    this.dom.peopleAmount = this.dom.wraper.querySelector(select.booking.peopleAmount);
-    this.dom.hoursAmount = this.dom.wraper.querySelector(select.booking.hoursAmount);
+    this.dom.wrapper = element;
+    // this.dom.wrapper.innerHTML = generatedHTML;
+    this.dom.peopleAmount = this.dom.wrapper.querySelector(select.booking.peopleAmount);
+    this.dom.hoursAmount = this.dom.wrapper.querySelector(select.booking.hoursAmount);
+    this.dom.datePicker = this.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
+    this.dom.hourPicker = this.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
   }
 
   initWidget(){
     this.peopleAmountWidget = new AmountWidget(this.dom.peopleAmount);
-    this.dom.peopleAmount.addEventListener('updated', function(){
-
-    });
-
     this.hoursAmountWidget = new AmountWidget(this.dom.hoursAmount);
-    this.dom.hoursAmount.addEventListener('updated', function () {
-
-    });
+    this.datePickerWidget = new DatePicker(this.dom.datePicker);
+    this.haurPickerWidget = new HourPicker(this.dom.hourPicker);
   }
 }
 

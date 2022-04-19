@@ -1,62 +1,58 @@
 import { select, settings } from '../settings.js';
+import BaseWidget from './BaseWidget.js';
 
-class AmountWidget {
-    constructor(element) {
-        const thisWidget = this;
+class AmountWidget extends BaseWidget{
+  constructor(element){
+    super(element, settings.amountWidget.defaultValue);
 
-        thisWidget.getElements(element);
-        thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
-        thisWidget.initAction();
-    }
+    const thisWidget =  this;
+    // console.log('this:', this);
 
-    getElements(element) {
-        const thisWidget = this;
+    thisWidget.getElements(element);
+    // ? to przestało teraz dobrze działać
+    // ? muszę dodać do HTML value="1" (<input class="amount" type="text" value="1">)
+    // thisWidget.setValue(thisWidget.dom.input.value || settings.amountWidget.defaultValue);
 
-        thisWidget.element = element;
-        thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-        thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
-        thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
-    }
+    thisWidget.initAction();
+  }
 
-    setValue(value) {
-        const thisWidget = this;
-        const newValue = parseInt(value);
+  getElements(){
+    const thisWidget = this;
 
-        if (thisWidget.value !== newValue && !isNaN(newValue)) {
-            if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
-                thisWidget.value = newValue;
-                thisWidget.announce(newValue);
-            }
-        }
+    // thisWidget.dom.wrapper = element;
+    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+    thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+    thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+  }
 
-        thisWidget.input.value = thisWidget.value;
-    }
+  isValid(value){
+    return !isNaN(value)
+      && value >= settings.amountWidget.defaultMin 
+      && value <= settings.amountWidget.defaultMax;
+  }
 
-    initAction() {
-        const thisWidget = this;
+  renedeValue(){
+    const thisWidget = this;
+    
+    thisWidget.dom.input.value = thisWidget.value;
+  }
 
-        thisWidget.input.addEventListener('change', function () {
-            thisWidget.setValue(thisWidget.input.value);
-        });
+  initAction(){
+    const thisWidget = this;
 
-        thisWidget.linkDecrease.addEventListener('click', function () {
-            thisWidget.setValue(parseInt(thisWidget.input.value) - 1);
-        });
+    thisWidget.dom.input.addEventListener('change', function (){
+      // thisWidget.setValue(thisWidget.dom.input.value);
+      thisWidget.value = thisWidget.dom.input.value;
+    });
 
-        thisWidget.linkIncrease.addEventListener('click', function () {
-            thisWidget.setValue(parseInt(thisWidget.input.value) + 1);
-        });
-    }
+    thisWidget.dom.linkDecrease.addEventListener('click', function (){
+      thisWidget.setValue(parseInt(thisWidget.dom.input.value) - 1);
+    });
 
-    announce() {
-        const thisWidget = this;
-
-        const event = new CustomEvent('updated', {
-            bubbles: true
-        });
-
-        thisWidget.element.dispatchEvent(event);
-    }
+    thisWidget.dom.linkIncrease.addEventListener('click', function (){
+      thisWidget.setValue(parseInt(thisWidget.dom.input.value) + 1);
+    });
+  }
 }
 
 export default AmountWidget;
