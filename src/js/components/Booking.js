@@ -1,5 +1,4 @@
 import { select, templates } from '../settings.js';
-import { utils } from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js'; 
 import HourPicker from './HourPicker.js'; 
@@ -13,13 +12,11 @@ class Booking{
   render(element){
 
     const generatedHTML = templates.bookingWidget();
-    this.element = utils.createDOMFromHTML(generatedHTML);
-    const bookingContainer = document.querySelector(select.containerOf.booking);
-    bookingContainer.appendChild(this.element);
 
     this.dom = {};
+
     this.dom.wrapper = element;
-    // this.dom.wrapper.innerHTML = generatedHTML;
+    this.dom.wrapper.innerHTML = generatedHTML;
     this.dom.peopleAmount = this.dom.wrapper.querySelector(select.booking.peopleAmount);
     this.dom.hoursAmount = this.dom.wrapper.querySelector(select.booking.hoursAmount);
     this.dom.datePicker = this.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
