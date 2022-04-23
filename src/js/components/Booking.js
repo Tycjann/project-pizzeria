@@ -128,7 +128,11 @@ class Booking {
     }
     
     for (const table of thisBooking.dom.tables) {
+      
+      table.classList.remove(classNames.booking.tableSelected);
+      
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+
       if(!isNaN(tableId)){
         tableId = parseInt(tableId);
       }
@@ -150,15 +154,23 @@ class Booking {
     if (selectTable.classList.contains(classNames.booking.tableBooked) == false
       && selectTable.classList.contains(classNames.booking.table) == true
     ){
-      // ściągamy clasę zaznaczania z thisBooking.tableSelectId if != null
-      for (const table of thisBooking.dom.tables) {
-        console.log('table:', table);
-        
+      const selectTableId = selectTable.getAttribute('data-table');
+
+      if (thisBooking.tableSelectId != selectTableId){
+        for (const table of thisBooking.dom.tables) {
+          table.classList.remove(classNames.booking.tableSelected);
+        }
+        selectTable.classList.add(classNames.booking.tableSelected);
+        thisBooking.tableSelectId = selectTableId;
+      } 
+      else {
+        selectTable.classList.remove(classNames.booking.tableSelected);
+        thisBooking.tableSelectId = '';
       }
-      // nakładamy klase table z tym id i dodajemy do thisBooking.tableSelectId
-      console.log(selectTable, thisBooking.tableSelectId);
     }
-    
+    else if (selectTable.classList.contains(classNames.booking.table) == true) {
+      alert('At this time, the table is full');
+    }
   }
 
   render(element) {
