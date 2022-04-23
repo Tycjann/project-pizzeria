@@ -42,12 +42,12 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
+    tablesAll: '.floor-plan',
     tables: '.floor-plan .table',
   },
   nav: {
     links: '.main-nav a',
   },
-  
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
@@ -78,7 +78,9 @@ export const classNames = {
   },
   booking: {
     loading: 'loading',
+    table: 'table',
     tableBooked: 'booked',
+    tableSelected: 'selected',
   },
   nav: {
     active: 'active',
