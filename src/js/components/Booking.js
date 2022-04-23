@@ -179,31 +179,43 @@ class Booking {
   sendBooking(){
     const thisBooking = this;
 
-    if (thisBooking.tableSelectId == '') thisBooking.tableSelectId = null;
-
     const url = settings.db.url + '/' + settings.db.booking;
 
+    if (thisBooking.tableSelectId == '') thisBooking.tableSelectId = null;
 
-    // thisBooking.date = thisBooking.datePickerWidget.value;
-    // thisBooking.hour = utils.hourToNumber(thisBooking.haurPickerWidget.value);
+    const date = thisBooking.datePickerWidget.value;
+    const hour = thisBooking.haurPickerWidget.value;
+    const duration = parseInt(thisBooking.dom.hoursAmountInput.value);
+    const table = parseInt(thisBooking.tableSelectId);
+
+    thisBooking.makeBooked(date, hour, duration, table);
 
     const dateSend = {
-      'date': thisBooking.datePickerWidget.value,
-      'hour': thisBooking.haurPickerWidget.value,
-      'table': parseInt(thisBooking.tableSelectId),
-      'duration': parseInt(thisBooking.dom.hoursAmountInput.value),
+      'date': date,
+      'hour': hour,
+      'table': table,
+      'duration': duration,
       'ppl': parseInt(thisBooking.dom.peopleAmountInput.value),
       'starters': thisBooking.starters,
       'phone': thisBooking.dom.phone.value,
       'address': thisBooking.dom.address.value,
     };
-    
-    console.log('dateSend:', dateSend, thisBooking.dom.hoursAmountInput.value);
 
+    const options = {
+      body: JSON.stringify(dateSend),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
-    // console.log('sendBooking', thisBooking.tableSelectId);
-    // console.log('thisBooking.dom.phone', thisBooking.dom.phone.value);
-    // console.log('thisBooking.dom.address', thisBooking.dom.address.value);
+    fetch(url, options)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
   }
 
   initStarters(){
