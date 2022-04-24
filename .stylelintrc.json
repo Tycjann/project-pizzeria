@@ -2,6 +2,7 @@
   "plugins": [
     "stylelint-scss"
   ],
+  "customSyntax": "postcss-less",
   "rules": {
     "block-no-empty": true,
     "color-no-invalid-hex": true,
@@ -11,6 +12,7 @@
     "declaration-block-trailing-semicolon": "always",
     "indentation": 2,
     "max-empty-lines": 2,
+    "unit-allowed-list": ["em","rem","%","px","ms","deg","s"],
     "max-nesting-depth": [3, {
       "ignore": ["pseudo-classes"]
     }],
@@ -18,10 +20,7 @@
       "except": ["first-nested"],
       "ignore": ["after-comment"]
     } ],
-    "unit-whitelist": [["%", "vh","vw"], {
-      "message": "Please use rem() for size units"
-    }],
-    "length-zero-no-unit": true,
+    "scss/selector-no-redundant-nesting-selector": true,
     "scss/no-duplicate-dollar-variables": true
   }
 }

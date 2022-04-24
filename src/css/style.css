@@ -723,7 +723,8 @@ input.error, select.error {
   opacity: 1;
 }
 
-.product.active .product__order, .product.active .product__images {
+.product.active .product__order,
+.product.active .product__images {
   opacity: 1;
 }
 
