@@ -4,6 +4,7 @@ import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from './components/Home.js';
 
 const app = {
   initPages: function(){
@@ -63,6 +64,10 @@ const app = {
     
   },
 
+  initHome: function () {
+    this.home = new Home(document.querySelector(select.containerOf.home));
+  },
+
   initBooking: function(){
     this.booking = new Booking(document.querySelector(select.containerOf.booking));
   },
@@ -112,6 +117,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initHome();
   }
 };
 
