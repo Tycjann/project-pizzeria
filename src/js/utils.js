@@ -6,11 +6,11 @@ utils.createDOMFromHTML = function (htmlString) {
   return div.firstChild;
 };
 
-utils.createPropIfUndefined = function (obj, key, value = []) {
-  if (!obj.hasOwnProperty(key)) {
-    obj[key] = value;
-  }
-};
+// utils.createPropIfUndefined = function (obj, key, value = []) {
+//   if (!obj.hasOwnProperty(key)) {
+//     obj[key] = value;
+//   }
+// };
 
 utils.serializeFormToObject = function (form) {
   let output = {};
@@ -34,14 +34,14 @@ utils.serializeFormToObject = function (form) {
   return output;
 };
 
-utils.convertDataSourceToDbJson = function () {
-  const productJson = [];
-  for (let key in dataSource.products) {
-    productJson.push(Object.assign({ id: key }, dataSource.products[key]));
-  }
+// utils.convertDataSourceToDbJson = function () {
+//   const productJson = [];
+//   for (let key in dataSource.products) {
+//     productJson.push(Object.assign({ id: key }, dataSource.products[key]));
+//   }
 
-  console.log(JSON.stringify({ product: productJson, order: [] }, null, '  '));
-};
+//   console.log(JSON.stringify({ product: productJson, order: [] }, null, '  '));
+// };
 
 utils.queryParams = function(params){
   return Object.keys(params)
