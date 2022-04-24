@@ -24,7 +24,7 @@ class Home{
   }
 
   initWidget() {
-    const thisHome = this;
+    // const thisHome = this;
 
   }
 }
