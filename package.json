@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.html",
     "engines": {
-        "node": "16.13.2"
+        "node": "16.13.2",
+        "npm": "8.5.1"
     },
     "scripts": {
         "init-project": "npm install && npm-run-all init:*",
