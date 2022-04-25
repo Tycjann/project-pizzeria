@@ -135,21 +135,21 @@ export const settings = {
   },
   homeCarousel: [
     {
-      src: '/assets/pizza-1.jpg',
+      src: 'assets/pizza-1.jpg',
       alt: 'Zdjęcie nr 1',
       title: 'Amazing!',
       txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo sit amet consectetur adipisicing.',
       who: 'Margaret Osborne',
     },
     {
-      src: '/assets/pizza-2.jpg',
+      src: 'assets/pizza-2.jpg',
       alt: 'Zdjęcie nr 2',
       title: 'Super!',
       txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo fugit excepturi nisi quo sit. sit amet consectetur adipisicing elit.',
       who: 'John Smith',
     },
     {
-      src: '/assets/pizza-3.jpg',
+      src: 'assets/pizza-3.jpg',
       alt: 'Zdjęcie nr 3',
       title: 'Cool!',
       txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo',
@@ -158,34 +158,34 @@ export const settings = {
   ],
   homeGallery: [
     {
-      src: '/assets/pizza-4.jpg',
+      src: 'assets/pizza-4.jpg',
       alt: 'Zdjęcie nr 1',
     },
     {
-      src: '/assets/pizza-5.jpg',
+      src: 'assets/pizza-5.jpg',
       alt: 'Zdjęcie nr 2',
     },
     {
-      src: '/assets/pizza-6.jpg',
+      src: 'assets/pizza-6.jpg',
       alt: 'Zdjęcie nr 3',
     },
     {
-      src: '/assets/pizza-7.jpg',
+      src: 'assets/pizza-7.jpg',
       alt: 'Zdjęcie nr 4',
     },
     {
-      src: '/assets/pizza-8.jpg',
+      src: 'assets/pizza-8.jpg',
       alt: 'Zdjęcie nr 5',
     },
     {
-      src: '/assets/pizza-9.jpg',
+      src: 'assets/pizza-9.jpg',
       alt: 'Zdjęcie nr 6',
     },
   ],
   homeInfoTop: {
-    src1: '/assets/pizza-1.jpg',
+    src1: 'assets/pizza-1.jpg',
     alt1: 'Opis 1',
-    src2: '/assets/pizza-2.jpg',
+    src2: 'assets/pizza-2.jpg',
     alt2: 'Opis 2',
   },
 };
