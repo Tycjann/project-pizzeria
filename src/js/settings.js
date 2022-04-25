@@ -135,21 +135,21 @@ export const settings = {
   },
   homeCarousel: [
     {
-      src: '../assets/pizza-1.jpg',
+      src: '/assets/pizza-1.jpg',
       alt: 'Zdjęcie nr 1',
       title: 'Amazing!',
       txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo sit amet consectetur adipisicing.',
       who: 'Margaret Osborne',
     },
     {
-      src: '../assets/pizza-2.jpg',
+      src: '/assets/pizza-2.jpg',
       alt: 'Zdjęcie nr 2',
       title: 'Super!',
       txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo fugit excepturi nisi quo sit. sit amet consectetur adipisicing elit.',
       who: 'John Smith',
     },
     {
-      src: '../assets/pizza-3.jpg',
+      src: '/assets/pizza-3.jpg',
       alt: 'Zdjęcie nr 3',
       title: 'Cool!',
       txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo',
@@ -183,9 +183,9 @@ export const settings = {
     },
   ],
   homeInfoTop: {
-    src1: '../assets/pizza-1.jpg',
+    src1: '/assets/pizza-1.jpg',
     alt1: 'Opis 1',
-    src2: '../assets/pizza-2.jpg',
+    src2: '/assets/pizza-2.jpg',
     alt2: 'Opis 2',
   },
 };
