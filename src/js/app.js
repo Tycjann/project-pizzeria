@@ -1,4 +1,4 @@
-console.clear();
+// console.clear();
 
 import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
@@ -65,7 +65,17 @@ const app = {
   },
 
   initHome: function () {
-    this.home = new Home(document.querySelector(select.containerOf.home));
+    const thisApp = this;
+    thisApp.home = new Home(document.querySelector(select.containerOf.home));
+    
+    thisApp.home.dom.linkOrder.addEventListener('click', function (event) {
+      event.preventDefault();
+      thisApp.activatePage('order');
+    });
+    thisApp.home.dom.linkBooking.addEventListener('click', function (event) {
+      event.preventDefault();
+      thisApp.activatePage('booking');
+    });
   },
 
   initBooking: function(){

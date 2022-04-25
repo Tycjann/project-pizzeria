@@ -11,6 +11,7 @@
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -254,44 +255,80 @@
       <section class="info-top">
         <div class="container">
           <div class="row">
-            <div class="col">
-              <h2>Order online</h2>
+            <div class="col col-6 info-top-elements go-order">
+              <div class="info-top-item">
+                <div class="info-top-image">
+                  <img src="{{ homeInfoTop.src1 }}" alt="{{ homeInfoTop.alt2 }}">
+                </div>
+                <div class="info-top-txt">
+                  <h2>Order online</h2>
+                  <p>Lorem ipsume ffgdssfaa sffafaf</p>
+                </div>
+              </div>
             </div>
-            <div class="col">
-              <h2>Book a table</h2>
+            <div class="col col-6 info-top-elements go-booking">
+              <div class="info-top-item">
+                <div class="info-top-image">
+                  <img src="{{ homeInfoTop.src2 }}" alt="{{ homeInfoTop.alt2 }}">
+                </div>
+                <div class="info-top-txt">
+                  <h2>Book a table</h2>
+                  <p>Lorem ipsume ffgdssfaa sffafaf</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="col">
-              <h2>Opening hours</h2>
-              <p>tue-sun, 12PM-12AM</p>
+            <div class="col col-12">
+              <div class="opening">
+                <h2>
+                  Opening hours
+                  <br><span>tue-sun, 12PM-12AM</span>
+                </h2>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="slider">
+      <section class="carousel-wrapper">
         <div class="container">
-          <div class="row">
+          <div class="carousel">
+            {{#each homeCarousel}}
+              <div class="carousel-cell">
+                <div class="pic" style="background-image: url('{{ src }}');" alt="{{ alt }}"></div>
+                <div class="description"">
+                  <p class="title">{{ title }}</p>
+                  <p>{{ txt }}</p>
+                  <p class="who">- {{ who }}</p>
+                </div>
+              </div>
+            {{/each}}
           </div>
         </div>
       </section>
 
       <section class="gallery">
         <div class="container">
-          <div class="row elements">
-            {{#each img}}
-            <div class="box">
-              <img src="{{ src }}" alt="{{ alt }}">
-              <div class="icons">
-                <ul>
-                  <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
-                  
-                  <li><a href="#"><i class="fab fa-facebook-f"></i>Facebook</a></li>
-                </ul>
+          <div class="gallery-elements">
+            {{#each homeGallery}}
+            <div class="gallery-item">
+              <div class="gallery-image">
+                <img src="{{ src }}" alt="{{ alt }}">
+              </div>
+              <div class="gallery-overlay">
+              </div>
+              <div class="gallery-icons">
+                  <ul>
+                    <li><a href="#"><i class="fas fa-heart"></i>Favorite</a></li>
+                    <li><a href="#"><i class="fas fa-share-alt"></i>Share</a></li>
+                  </ul>
               </div>
             </div>
             {{/each}}
+          </div>
+          <div class="gallery-more">
+            <a href="#">View more on Instagram</a>
           </div>
         </div>
       </section>
@@ -301,6 +338,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 

@@ -13,7 +13,7 @@
     "indentation": 2,
     "max-empty-lines": 2,
     "unit-allowed-list": ["em","rem","%","px","ms","deg","s"],
-    "max-nesting-depth": [3, {
+    "max-nesting-depth": [5, {
       "ignore": ["pseudo-classes"]
     }],
     "rule-empty-line-before": [ "always", {

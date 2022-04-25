@@ -1,4 +1,5 @@
-import { templates } from '../settings.js';
+import { select, templates, settings } from '../settings.js';
+import Carousel from './Carousel.js';
 
 class Home{
   constructor(element){
@@ -11,20 +12,27 @@ class Home{
   render(element) {
     const thisHome = this;
 
-    const generatedHTML = templates.homePage();
+    const generatedHTML = templates.homePage(settings);
 
     thisHome.dom = {};
 
     thisHome.dom.wrapper = element;
 
     thisHome.dom.wrapper.innerHTML = generatedHTML;
-
-    console.log('host:', window.location.hostname);
-
+    
+    thisHome.dom.linkOrder = thisHome.dom.wrapper.querySelector(select.homePage.linkOrder);
+    thisHome.dom.linkBooking = thisHome.dom.wrapper.querySelector(select.homePage.linkBooking);
+    thisHome.dom.carouselWidget = thisHome.dom.wrapper.querySelector(select.widgets.homeCarousel.wrapper);
   }
 
   initWidget() {
-    // const thisHome = this;
+    const thisHome = this;
+
+    thisHome.carouselWidget = new Carousel(thisHome.dom.carouselWidget);
+
+    // thisHome.dom.linkOrder.addEventListener('click', function (event) {
+    //   console.log('thisHome:', thisHome, event);
+    // });
 
   }
 }

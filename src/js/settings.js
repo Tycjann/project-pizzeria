@@ -40,6 +40,9 @@ export const select = {
       input: 'input[type="range"]',
       output: '.output',
     },
+    homeCarousel: {
+      wrapper: '.carousel',
+    },
   },
   booking: {
     peopleAmount: '.people-amount',
@@ -70,6 +73,10 @@ export const select = {
     price: '.cart__product-price',
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
+  },
+  homePage: {
+    linkOrder: '.go-order',
+    linkBooking: '.go-booking',
   },
 };
 
@@ -125,6 +132,61 @@ export const settings = {
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
+  },
+  homeCarousel: [
+    {
+      src: '../assets/pizza-1.jpg',
+      alt: 'Zdjęcie nr 1',
+      title: 'Amazing!',
+      txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo sit amet consectetur adipisicing.',
+      who: 'Margaret Osborne',
+    },
+    {
+      src: '../assets/pizza-2.jpg',
+      alt: 'Zdjęcie nr 2',
+      title: 'Super!',
+      txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo fugit excepturi nisi quo sit. sit amet consectetur adipisicing elit.',
+      who: 'John Smith',
+    },
+    {
+      src: '../assets/pizza-3.jpg',
+      alt: 'Zdjęcie nr 3',
+      title: 'Cool!',
+      txt: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam fugit excepturi nisi quo',
+      who: 'Adam Doe',
+    },
+  ],
+  homeGallery: [
+    {
+      src: '/assets/pizza-4.jpg',
+      alt: 'Zdjęcie nr 1',
+    },
+    {
+      src: '/assets/pizza-5.jpg',
+      alt: 'Zdjęcie nr 2',
+    },
+    {
+      src: '/assets/pizza-6.jpg',
+      alt: 'Zdjęcie nr 3',
+    },
+    {
+      src: '/assets/pizza-7.jpg',
+      alt: 'Zdjęcie nr 4',
+    },
+    {
+      src: '/assets/pizza-8.jpg',
+      alt: 'Zdjęcie nr 5',
+    },
+    {
+      src: '/assets/pizza-9.jpg',
+      alt: 'Zdjęcie nr 6',
+    },
+  ],
+  homeInfoTop: {
+    src1: '../assets/pizza-1.jpg',
+    alt1: 'Opis 1',
+    src2: '../assets/pizza-2.jpg',
+    alt2: 'Opis 2',
   },
 };
 
